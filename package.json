@@ -8,6 +8,7 @@
     "build": "vite build",
     "serve": "vite preview"
   },
+  "type": "module",
   "license": "MIT",
   "devDependencies": {
     "@iconify/json": "^2.2.82",
