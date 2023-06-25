@@ -10,11 +10,19 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@iconify/json": "^2.2.82",
+    "@unocss/transformer-attributify-jsx": "^0.53.3",
+    "@unocss/transformer-variant-group": "^0.53.3",
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "prettier-plugin-tailwindcss": "^0.3.0",
     "solid-devtools": "^0.27.3",
+    "unocss": "^0.53.3",
     "vite": "^4.3.9",
     "vite-plugin-solid": "^2.7.0"
   },
   "dependencies": {
+    "@kobalte/core": "^0.9.6",
+    "@unocss/reset": "^0.53.3",
     "solid-js": "^1.7.6"
   }
 }
