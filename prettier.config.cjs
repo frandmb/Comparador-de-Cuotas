@@ -1,7 +1,4 @@
 module.exports = {
-  plugins: [
-    require("prettier-plugin-tailwindcss"),
-    require("prettier-plugin-organize-imports"),
-  ],
+  plugins: ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"],
   organizeImportsSkipDestructiveCodeActions: true,
 };
