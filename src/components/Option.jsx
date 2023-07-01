@@ -7,11 +7,19 @@ export const Option = (props) => {
   const [value, setValue] = createSignal("");
   const [cuota, setCuota] = createSignal("1");
   return (
-    <section class="border-green-8 border-3 w-xs flex flex-col rounded-xl p-4 pb-5">
-      <h1 class="opacity-85 relative left--2 top--3 select-none text-xs">
-        Opción {props.idx}
-      </h1>
-      <div class="flex flex-col gap-5">
+    <section class="border-green-8 border-3 w-xs flex flex-col rounded-xl">
+      <div class="flex justify-between px-2 pt-1">
+        <h1 class="opacity-85 select-none text-xs">Opción {props.idx}</h1>
+        {props.close && (
+          <Button.Root
+            class="opacity-85 bg-transparent text-xs"
+            onclick={props.close}
+          >
+            <div i="gridicons-cross-circle" class="text-2xl" />
+          </Button.Root>
+        )}
+      </div>
+      <div class="flex flex-col gap-5 p-4 pb-5">
         <div class="flex flex-col">
           <TextField.Root
             value={value()}

@@ -7,7 +7,7 @@ const App = () => {
   const [opt1, setOpt1] = createSignal({ price: "0", cuotas: "1" });
   const [opt2, setOpt2] = createSignal({ price: "0", cuotas: "1" });
   const [displayResults, setDisplayResults] = createSignal(false);
-  const [options, setOptions] = createSignal([]);
+  const [options, setOptions] = createSignal([opt1, opt2]);
 
   const toggleResults = () => {
     setDisplayResults(!displayResults());
@@ -19,7 +19,12 @@ const App = () => {
     });
   };
 
-  const removeOption = (id) => {};
+  const removeOption = (id) => {
+    setOptions((opts) => {
+      opts.pop(id);
+      return [...opts];
+    });
+  };
 
   return (
     <div class="font-inter w-screen text-gray-300">
@@ -32,11 +37,20 @@ const App = () => {
           </h4>
         </header>
         <main class="mt-5 flex flex-col items-center gap-3">
-          <Option idx="1" />
-          <Option idx="2" />
           <For each={options()}>
             {(option, idx) => {
-              return <Option idx={idx() + 3} removable />;
+              return (
+                <Option
+                  idx={idx() + 1}
+                  close={
+                    idx() > 1
+                      ? () => {
+                          removeOption(idx());
+                        }
+                      : false
+                  }
+                />
+              );
             }}
           </For>
           <span
