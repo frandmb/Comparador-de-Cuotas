@@ -33,7 +33,7 @@ export const Option = (props) => {
               $
               <TextField.Input
                 min="0"
-                class="bg-slate-8 m-1 ml-2 rounded-xl py-2 pr-2"
+                class="bg-slate-8 ui-invalid:(outline outline-red outline) m-1 ml-2 rounded-xl py-2 pr-3"
                 value={price()}
               />
             </div>
@@ -71,7 +71,7 @@ export const Option = (props) => {
               </div>
               <TextField.Input
                 min="0"
-                class="bg-slate-8 block w-[3rem] rounded-xl px-2 py-2"
+                class="bg-slate-8 ui-invalid:(outline outline-red outline) block w-[3rem] rounded-xl px-2 py-2"
                 value={cuotas()}
               />
             </div>
