@@ -4,10 +4,16 @@ import { clsx } from "clsx";
 import { createSignal, For } from "solid-js";
 
 const App = () => {
-  const [opt1, setOpt1] = createSignal({ price: "0", cuotas: "1" });
-  const [opt2, setOpt2] = createSignal({ price: "0", cuotas: "1" });
-  const [displayResults, setDisplayResults] = createSignal(false);
+  const opt1 = {
+    price: createSignal("0"),
+    cuotas: createSignal("1"),
+  };
+  const opt2 = {
+    price: createSignal("0"),
+    cuotas: createSignal("1"),
+  };
   const [options, setOptions] = createSignal([opt1, opt2]);
+  const [displayResults, setDisplayResults] = createSignal(false);
 
   const toggleResults = () => {
     setDisplayResults(!displayResults());
@@ -15,7 +21,7 @@ const App = () => {
 
   const addOption = () => {
     setOptions((opts) => {
-      return [...opts, {}];
+      return [...opts, { price: createSignal("0"), cuotas: createSignal("1") }];
     });
   };
 
@@ -49,6 +55,7 @@ const App = () => {
                         }
                       : false
                   }
+                  optionData={option}
                 />
               );
             }}
