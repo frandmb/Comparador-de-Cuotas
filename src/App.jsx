@@ -27,7 +27,7 @@ const App = () => {
 
   const removeOption = (id) => {
     setOptions((opts) => {
-      opts.pop(id);
+      opts.splice(id, 1);
       return [...opts];
     });
   };
