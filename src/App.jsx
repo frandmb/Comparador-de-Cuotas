@@ -4,15 +4,7 @@ import { clsx } from "clsx";
 import { createSignal, For } from "solid-js";
 
 const App = () => {
-  const opt1 = {
-    price: createSignal("0"),
-    cuotas: createSignal("1"),
-  };
-  const opt2 = {
-    price: createSignal("0"),
-    cuotas: createSignal("1"),
-  };
-  const [options, setOptions] = createSignal([opt1, opt2]);
+  const [options, setOptions] = createSignal([]);
   const [displayResults, setDisplayResults] = createSignal(false);
 
   const toggleResults = () => {
@@ -21,7 +13,7 @@ const App = () => {
 
   const addOption = () => {
     setOptions((opts) => {
-      return [...opts, { price: createSignal("0"), cuotas: createSignal("1") }];
+      return [...opts, { price: createSignal(""), cuotas: createSignal("1") }];
     });
   };
 
@@ -31,6 +23,10 @@ const App = () => {
       return [...opts];
     });
   };
+
+  [0, 0].forEach(() => {
+    addOption();
+  });
 
   return (
     <div class="font-inter w-screen text-gray-300">
