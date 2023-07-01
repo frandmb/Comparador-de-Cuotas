@@ -34,8 +34,7 @@ const App = () => {
         <header>
           <h1 class="mb-1 text-3xl">Comparador de Cuotas.</h1>
           <h4 class="text-xs">
-            Herramienta para comparar el número óptimo de cuotas para una
-            compra, dependiendo del interés.
+            Calculá qué opción te conviene más contra la inflación Argentina.
           </h4>
         </header>
         <main class="mt-5 flex flex-col items-center gap-3">
@@ -61,6 +60,7 @@ const App = () => {
             onclick={addOption}
             i="system-uicons-plus-circle"
           />
+          <span>Inflación estimada:</span>
 
           <Button.Root
             class="bg-green-9 rounded-xl px-7 py-3 font-bold"
