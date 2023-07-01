@@ -1,14 +1,29 @@
 import { Option } from "@/components/Option";
+import { Button } from "@kobalte/core";
+import { clsx } from "clsx";
 import { createSignal, For } from "solid-js";
 
 const App = () => {
-  const [opt1, setOpt1] = createSignal();
-  const [opt2, setOpt2] = createSignal();
+  const [opt1, setOpt1] = createSignal({ price: "0", cuotas: "1" });
+  const [opt2, setOpt2] = createSignal({ price: "0", cuotas: "1" });
+  const [displayResults, setDisplayResults] = createSignal(false);
   const [options, setOptions] = createSignal([]);
+
+  const toggleResults = () => {
+    setDisplayResults(!displayResults());
+  };
+
+  const addOption = () => {
+    setOptions((opts) => {
+      return [...opts, {}];
+    });
+  };
+
+  const removeOption = (id) => {};
 
   return (
     <div class="font-inter w-screen text-gray-300">
-      <div class="container p-5">
+      <div class="m-a container p-5">
         <header>
           <h1 class="mb-1 text-3xl">Comparador de Cuotas.</h1>
           <h4 class="text-xs">
@@ -26,18 +41,22 @@ const App = () => {
           </For>
           <span
             class="block cursor-pointer text-5xl"
-            onclick={() => {
-              setOptions((opts) => {
-                return [...opts, {}];
-              });
-            }}
+            onclick={addOption}
             i="system-uicons-plus-circle"
           />
-          <div>
+
+          <Button.Root
+            class="bg-green-9 rounded-xl px-7 py-3 font-bold"
+            onclick={toggleResults}
+          >
+            Calcular
+          </Button.Root>
+
+          <section class={clsx(displayResults() ? "block" : "hidden")}>
             <h1>
               Tu mejor opción es: <span>{}</span>
             </h1>
-          </div>
+          </section>
         </main>
       </div>
     </div>
