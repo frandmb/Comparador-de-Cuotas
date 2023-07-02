@@ -12,11 +12,10 @@ export const Option = (props) => {
         <h1 class="opacity-85 select-none text-xs">Opción {props.idx}</h1>
         {props.close && (
           <Button.Root
-            class="opacity-85 bg-transparent text-xs"
+            class="opacity-85 text-6 block"
             onclick={props.close}
-          >
-            <div i="gridicons-cross-circle" class="text-2xl" />
-          </Button.Root>
+            i="gridicons-cross-circle"
+          />
         )}
       </div>
       <div class="flex flex-col gap-5 p-4 pb-5">

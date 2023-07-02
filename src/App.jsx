@@ -3,6 +3,8 @@ import { Button } from "@kobalte/core";
 import { clsx } from "clsx";
 import { createSignal, For } from "solid-js";
 
+const inflation = 6.8;
+
 const App = () => {
   const [options, setOptions] = createSignal([]);
   const [displayResults, setDisplayResults] = createSignal(false);
@@ -55,7 +57,7 @@ const App = () => {
               );
             }}
           </For>
-          <span
+          <Button.Root
             class="block cursor-pointer text-5xl"
             onclick={addOption}
             i="system-uicons-plus-circle"
@@ -63,8 +65,10 @@ const App = () => {
           <span>Inflación estimada:</span>
 
           <Button.Root
-            class="bg-green-9 rounded-xl px-7 py-3 font-bold"
-            onclick={toggleResults}
+            class="bg-green-9 hover:bg-green-8 rounded-xl px-7 py-3 font-bold transition duration-300"
+            onclick={() => {
+              toggleResults();
+            }}
           >
             Calcular
           </Button.Root>
