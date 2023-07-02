@@ -29,11 +29,11 @@ export const Option = (props) => {
             }
           >
             <TextField.Label>Precio final:</TextField.Label>
-            <div class="bg-slate-8 rounded-xl pl-2">
-              $
+            <div class="bg-slate-8 flex items-center rounded-xl">
+              <span class="w-1/10 text-center">$</span>
               <TextField.Input
                 min="0"
-                class="bg-slate-8 ui-invalid:(outline outline-red) m-1 ml-2 rounded-xl py-2 pr-3 transition duration-300 ease-in-out"
+                class="bg-slate-8 ui-invalid:(outline outline-red) w-9/10 rounded-xl py-2 pl-2 transition duration-300 ease-in-out"
                 value={price()}
               />
             </div>
@@ -49,13 +49,13 @@ export const Option = (props) => {
             validationState={parseFloat(cuotas()) >= 1 ? "valid" : "invalid"}
           >
             <TextField.Label>Cuotas:</TextField.Label>
-            <div class="flex items-center gap-2">
-              <div class="border-green-9 inline-block cursor-pointer select-none rounded-xl border-2">
+            <div class="flex h-8 items-center gap-1.5">
+              <div class="border-green-9 w-25/29 h-full cursor-pointer select-none rounded-xl border-2">
                 {cuotasDefault.map((cuotaDefault) => {
                   return (
                     <Button.Root
                       class={clsx(
-                        "border-green-9 last:(border-none rounded-r-md) hover:bg-green-9 w-[1.73rem] flex-1 border-r bg-clip-border py-1 transition duration-300 ease-in-out first:rounded-l-md",
+                        "border-green-9 last:(border-none rounded-r-md) hover:bg-green-9 w-1/8 py-0.7 h-full flex-1 border-r bg-clip-border transition duration-300 ease-in-out first:rounded-l-md",
                         cuotaDefault === cuotas()
                           ? "bg-green-9"
                           : "bg-transparent"
@@ -71,7 +71,7 @@ export const Option = (props) => {
               </div>
               <TextField.Input
                 min="0"
-                class="bg-slate-8 ui-invalid:(outline outline-red outline) block w-[3rem] rounded-xl px-2 py-2 transition duration-300 ease-in-out"
+                class="bg-slate-8 ui-invalid:(outline outline-red outline) w-4/29 h-full rounded-xl px-2 text-center transition duration-300 ease-in-out"
                 value={cuotas()}
               />
             </div>
