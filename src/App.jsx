@@ -73,7 +73,7 @@ const App = () => {
             Calcular
           </Button.Root>
 
-          <section class={clsx(displayResults() ? "block" : "hidden")}>
+          <section class={displayResults() ? "block" : "hidden"}>
             <h1>
               Tu mejor opción es: <span>{}</span>
             </h1>
