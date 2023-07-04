@@ -1,4 +1,5 @@
 /* @refresh reload */
+import "@/global.css";
 import "@unocss/reset/tailwind-compat.css";
 import { render } from "solid-js/web";
 import "virtual:uno.css";
