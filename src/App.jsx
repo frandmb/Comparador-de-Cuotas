@@ -1,13 +1,14 @@
 import { Option } from "@/components/Option";
-import { Button } from "@kobalte/core";
+import { Results } from "@/components/Results";
+import { Button, TextField } from "@kobalte/core";
 import { clsx } from "clsx";
-import { createSignal, For, Show } from "solid-js";
+import { For, Show, createSignal } from "solid-js";
 
 const App = () => {
-  const inflation = 7.8; // No encontré API pública para pullearlo actualizado, ref publicación: https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31
+  const [inflation, setInflation] = createSignal(7.8); // No encontré API pública para pullearlo actualizado, ref publicación: https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31
   const [options, setOptions] = createSignal([]);
   const [displayResults, setDisplayResults] = createSignal(false);
-  const [compoundPrices, setCompoundPrices] = createSignal(["0", 0]);
+  const [compoundPrices, setCompoundPrices] = createSignal([]);
 
   const calculateCurrentPrice = async (price, inflation, period) => {
     return price * Math.pow(1 - inflation, period);
@@ -27,6 +28,10 @@ const App = () => {
 
   const showResults = () => {
     setDisplayResults(true);
+  };
+
+  const hideResults = () => {
+    setDisplayResults(false);
   };
 
   const addOption = () => {
@@ -59,10 +64,41 @@ const App = () => {
           <h1 class="mb-1 text-2xl">Comparador de Cuotas.</h1>
           <h4 class="text-xs">
             Calculá qué opción de compra se posiciona mejor contra la inflación
-            Argentina.
+            mensual estimada. Fuente actual:{" "}
+            <a
+              href="https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31"
+              target="blank"
+            >
+              Mayo INDEC
+            </a>
           </h4>
         </header>
-        <main class="mt-5 flex flex-col items-center gap-3">
+        <main class="mt-2 flex flex-col items-center gap-3">
+          <TextField.Root
+            onChange={setInflation}
+            class="flex justify-center"
+            validationState={
+              parseFloat(inflation()) > 0 || inflation() === ""
+                ? "valid"
+                : "invalid"
+            }
+          >
+            <div class="border-1 border-green-9 w-5/10 flex flex-row overflow-hidden rounded-xl">
+              <TextField.Label class="bg-green-9 pl-2 pr-1 text-center text-xs">
+                Inflación estimada:
+              </TextField.Label>
+              <div class="bg-slate-8 w-9/10 flex items-center">
+                <TextField.Input
+                  min="0"
+                  class="bg-slate-8 ui-invalid:(outline outline-red) w-9/10 text-center transition duration-300 ease-in-out"
+                  value={inflation()}
+                />
+              </div>
+            </div>
+            <TextField.ErrorMessage class="color-red absolute text-xs">
+              El monto debe ser superior a $0
+            </TextField.ErrorMessage>
+          </TextField.Root>
           <For each={options()}>
             {(option, idx) => {
               return (
@@ -84,13 +120,13 @@ const App = () => {
             class="cursor-pointer bg-transparent text-5xl"
             onclick={addOption}
           >
-            <div i="system-uicons-plus-circle"></div>
+            <div i="system-uicons-plus-circle" />
           </Button.Root>
-          <span>Inflación estimada: {inflation}</span>
 
           <Button.Root
             class="bg-green-9 hover:bg-green-8 rounded-xl px-7 py-3 font-bold transition duration-300"
             onclick={async () => {
+              hideResults();
               const prices = await Promise.all(
                 options().map(async (option) => {
                   const [installments, price] = [
@@ -99,10 +135,12 @@ const App = () => {
                   ];
                   return {
                     installments: installments,
-                    compoundPrice: await calculateCompoundPrice(
-                      Number(price),
-                      inflation / 100,
-                      parseInt(installments)
+                    compoundPrice: Math.round(
+                      await calculateCompoundPrice(
+                        Number(price),
+                        inflation / 100,
+                        parseInt(installments)
+                      )
                     ),
                     price: price,
                   };
@@ -117,17 +155,7 @@ const App = () => {
           </Button.Root>
 
           <Show when={displayResults()}>
-            <h1>
-              Tu mejor opción es pagar
-              {() => {
-                const { installments, price } = compoundPrices()[0];
-                return (
-                  (installments > 0
-                    ? ` en ${installments} CUOTAS`
-                    : ` de CONTADO`) + ` a $${price} (total)`
-                );
-              }}
-            </h1>
+            <Results compoundPrices={compoundPrices} close={hideResults} />
           </Show>
         </main>
       </div>

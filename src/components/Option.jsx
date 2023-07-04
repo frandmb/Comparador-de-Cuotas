@@ -1,6 +1,5 @@
 import { Button, TextField } from "@kobalte/core";
 import { clsx } from "clsx";
-import { createSignal } from "solid-js";
 
 const standardInstallments = ["1", "3", "6", "9", "12", "18", "24", "36"];
 export const Option = (props) => {
@@ -15,14 +14,13 @@ export const Option = (props) => {
             class="opacity-85 text-6 bg-transparent"
             onclick={props.close}
           >
-            <div i="gridicons-cross-circle"></div>
+            <div i="gridicons-cross-circle" />
           </Button.Root>
         )}
       </div>
       <div class="flex flex-col gap-5 p-4 pb-5">
         <div class="flex flex-col">
           <TextField.Root
-            price={price()}
             onChange={setPrice}
             validationState={
               parseFloat(price()) > 0 || price() === "" ? "valid" : "invalid"
@@ -44,7 +42,6 @@ export const Option = (props) => {
         </div>
         <div class="flex flex-col gap-2">
           <TextField.Root
-            price={installments()}
             onChange={setInstallments}
             validationState={
               parseFloat(installments()) >= 0 ? "valid" : "invalid"
