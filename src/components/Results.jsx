@@ -4,6 +4,7 @@ import { For } from "solid-js";
 
 export const Results = (props) => {
   const [bestOption, ...options] = props.compoundPrices();
+  const { inflation } = props;
 
   const createTable = (columns, values) => {
     return (
@@ -53,45 +54,47 @@ export const Results = (props) => {
   };
 
   return (
-    <section class="fixed inset-0 bg-black p-6">
-      <header class="text-right">
-        <Button.Root class="bg-transparent" onclick={props.close}>
-          <i i="gridicons-cross-circle" class="block text-xl" />
-        </Button.Root>
-      </header>
+    <section class="fixed inset-0 bg-black p-6 z-50 lg:(relative)">
+      <div class="container m-a">
+        <header class="text-right">
+          <Button.Root class="bg-transparent" onclick={props.close}>
+            <i i="gridicons-cross-circle" class="block text-xl lg:(text-4xl)" />
+          </Button.Root>
+        </header>
 
-      <div>
-        Tu mejor opción contra la inflación de {props.inflation}% mensual es:
-      </div>
+        <div>
+          Tu mejor opción contra una inflación de {inflation}% mensual es:
+        </div>
 
-      {createTable(
-        ["Cuotas", "Precio", "Valor Actual"],
-        [
-          [
-            bestOption.installments === "0"
-              ? "CONTADO"
-              : bestOption.installments,
-            `$${bestOption.price}`,
-            `$${bestOption.compoundPrice}`,
-          ],
-        ]
-      )}
-
-      <div class="mt-14">
-        Tus otras opciones:
         {createTable(
-          ["Cuotas", "Precio", "Valor Actual"],
-          options.map((option) => {
-            return [
-              option.installments === "0" ? "CONTADO" : option.installments,
-              `$${option.price}`,
-              `$${option.compoundPrice}`,
-            ];
-          })
+          ["Cuotas", "Precio", "Equivalente Hoy"],
+          [
+            [
+              bestOption.installments === "0"
+                ? "contado"
+                : bestOption.installments,
+              `$${bestOption.price || 0}`,
+              `$${bestOption.compoundPrice}`,
+            ],
+          ]
         )}
-      </div>
 
-      <Footer />
+        <div class="mt-14">
+          Tus otras opciones:
+          {createTable(
+            ["Cuotas", "Precio", "Equivalente Hoy"],
+            options.map((option) => {
+              return [
+                option.installments === "0" ? "contado" : option.installments,
+                `$${option.price || 0}`,
+                `$${option.compoundPrice}`,
+              ];
+            })
+          )}
+        </div>
+
+        <Footer class="lg:hidden" />
+      </div>
     </section>
   );
 };

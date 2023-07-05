@@ -1,11 +1,18 @@
-export const Footer = () => {
+import { clsx } from "clsx";
+
+export const Footer = (props) => {
   return (
-    <footer class="flex flex-col items-center px-7 text-center text-gray-400">
+    <footer
+      class={clsx(
+        "flex flex-col items-center px-7 text-center text-gray-400",
+        props.class
+      )}
+    >
       <h2 class="text-6">¿Cómo se calcula?</h2>
       <p>
         La comparación se realiza calculando el Valor Presente del dinero en
-        cada opción. Se calcula mes por mes y luego se suma, usando una tasa de
-        interés compuesta.
+        cada opción. Se calcula el interés compuesto cuota por cuota y luego se
+        suman.
         <br />
         <a
           href="https://economipedia.com/definiciones/valor-futuro.html"

@@ -61,10 +61,10 @@ const App = () => {
     <div class="font-inter w-screen text-gray-300">
       <div class="m-a container p-5">
         <header>
-          <h1 class="mb-1 text-2xl">Comparador de Cuotas.</h1>
+          <h1 class="mb-1 text-2xl lg:text-3xl">Comparador de Cuotas.</h1>
           <h4 class="text-xs">
             Calculá qué opción de compra se posiciona mejor contra la inflación
-            mensual estimada. <br /> Fuente actual:{" "}
+            mensual estimada. <br /> Fuente:{" "}
             <a
               href="https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31"
               target="blank"
@@ -83,11 +83,11 @@ const App = () => {
               Number.isFinite(parseFloat(inflation())) ? "valid" : "invalid"
             }
           >
-            <div class="border-1 border-green-9 flex w-1/2 flex-row overflow-hidden rounded-xl">
-              <TextField.Label class="bg-green-9 block w-1/2 pl-2 pr-1 text-center text-xs">
+            <div class="flex w-1/2 flex-row">
+              <TextField.Label class="bg-green-9 block w-1/2 pl-2 pr-1 text-center text-xs rounded-l-xl py-1 cursor-pointer">
                 Inflación estimada:
               </TextField.Label>
-              <div class="bg-slate-8 flex w-1/2 items-center">
+              <div class="bg-slate-8 flex w-1/2 items-center rounded-r-xl">
                 <TextField.Input
                   class="bg-slate-8 ui-invalid:(outline outline-red) w-9/10 text-center transition duration-300 ease-in-out"
                   value={inflation()}
@@ -95,29 +95,31 @@ const App = () => {
               </div>
             </div>
           </TextField.Root>
-          <For each={options()}>
-            {(option, idx) => {
-              return (
-                <Option
-                  idx={idx() + 1}
-                  close={
-                    idx() > 1
-                      ? () => {
-                          removeOption(idx());
-                        }
-                      : false
-                  }
-                  optionData={option}
-                />
-              );
-            }}
-          </For>
-          <Button.Root
-            class="cursor-pointer bg-transparent text-5xl"
-            onclick={addOption}
-          >
-            <div i="system-uicons-plus-circle" />
-          </Button.Root>
+          <div class="lg:(flex-row flex-wrap) flex flex-col gap-3">
+            <For each={options()}>
+              {(option, idx) => {
+                return (
+                  <Option
+                    idx={idx() + 1}
+                    close={
+                      idx() > 1
+                        ? () => {
+                            removeOption(idx());
+                          }
+                        : false
+                    }
+                    optionData={option}
+                  />
+                );
+              }}
+            </For>
+            <Button.Root
+              class="cursor-pointer bg-transparent text-5xl lg:(border-2 border-white border-dashed w-xs rounded-xl h-50)"
+              onclick={addOption}
+            >
+              <div i="system-uicons-plus-circle" class="m-auto" />
+            </Button.Root>
+          </div>
 
           <Button.Root
             class="bg-green-9 hover:bg-green-8 rounded-xl px-7 py-3 font-bold transition duration-300"
@@ -129,12 +131,14 @@ const App = () => {
                     option["installments"][0](),
                     option["price"][0](),
                   ];
+                  const decimalInflation = Number(inflation()) / 100;
+                  console.log(decimalInflation);
                   return {
                     installments: installments,
                     compoundPrice: Math.round(
                       await calculateCompoundPrice(
                         Number(price),
-                        inflation / 100,
+                        decimalInflation,
                         parseInt(installments)
                       )
                     ),
@@ -154,7 +158,7 @@ const App = () => {
             <Results
               compoundPrices={compoundPrices}
               close={hideResults}
-              inflation={inflation}
+              inflation={inflation()}
             />
           </Show>
         </main>

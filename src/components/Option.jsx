@@ -6,8 +6,8 @@ export const Option = (props) => {
   const [installments, setInstallments] = props.optionData.installments;
   const [price, setPrice] = props.optionData.price;
   return (
-    <section class="border-green-8 border-3 w-xs flex flex-col rounded-xl">
-      <div class="flex justify-between px-2 pt-1">
+    <section class="border-green-8 border-3 w-xs flex flex-col rounded-xl h-50">
+      <div class="flex justify-between px-2 pt-1 h-5">
         <h1 class="opacity-85 select-none text-xs">Opción {props.idx}</h1>
         {props.close && (
           <Button.Root
