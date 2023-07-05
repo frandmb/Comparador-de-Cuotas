@@ -11,22 +11,22 @@
   "type": "module",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@iconify/json": "^2.2.82",
-    "@unocss/transformer-attributify-jsx": "^0.53.3",
-    "@unocss/transformer-variant-group": "^0.53.3",
+    "@iconify/json": "^2.2.86",
+    "@unocss/transformer-attributify-jsx": "^0.53.4",
+    "@unocss/transformer-variant-group": "^0.53.4",
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "solid-devtools": "^0.27.3",
-    "unocss": "^0.53.3",
+    "unocss": "^0.53.4",
     "unocss-preset-primitives": "0.0.1-beta.8",
     "vite": "^4.3.9",
     "vite-plugin-solid": "^2.7.0"
   },
   "dependencies": {
-    "@kobalte/core": "^0.9.6",
-    "@unocss/reset": "^0.53.3",
+    "@kobalte/core": "^0.9.8",
+    "@unocss/reset": "^0.53.4",
     "clsx": "^1.2.1",
-    "solid-js": "^1.7.6"
+    "solid-js": "^1.7.7"
   }
 }
