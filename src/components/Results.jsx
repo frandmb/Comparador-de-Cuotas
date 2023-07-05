@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { Button } from "@kobalte/core";
 import { For } from "solid-js";
 
@@ -59,7 +60,9 @@ export const Results = (props) => {
         </Button.Root>
       </header>
 
-      <div>Tu mejor opción contra la inflación es:</div>
+      <div>
+        Tu mejor opción contra la inflación de {props.inflation}% mensual es:
+      </div>
 
       {createTable(
         ["Cuotas", "Precio", "Valor Actual"],
@@ -87,6 +90,8 @@ export const Results = (props) => {
           })
         )}
       </div>
+
+      <Footer />
     </section>
   );
 };

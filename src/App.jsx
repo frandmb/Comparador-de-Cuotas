@@ -1,7 +1,7 @@
+import { Footer } from "@/components/Footer";
 import { Option } from "@/components/Option";
 import { Results } from "@/components/Results";
 import { Button, TextField } from "@kobalte/core";
-import { clsx } from "clsx";
 import { For, Show, createSignal } from "solid-js";
 
 const App = () => {
@@ -64,13 +64,15 @@ const App = () => {
           <h1 class="mb-1 text-2xl">Comparador de Cuotas.</h1>
           <h4 class="text-xs">
             Calculá qué opción de compra se posiciona mejor contra la inflación
-            mensual estimada. Fuente actual:{" "}
+            mensual estimada. <br /> Fuente actual:{" "}
             <a
               href="https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31"
               target="blank"
+              class="underline"
             >
               Mayo INDEC
-            </a>
+            </a>{" "}
+            (Argentina)
           </h4>
         </header>
         <main class="mt-2 flex flex-col items-center gap-3">
@@ -78,26 +80,20 @@ const App = () => {
             onChange={setInflation}
             class="flex justify-center"
             validationState={
-              parseFloat(inflation()) > 0 || inflation() === ""
-                ? "valid"
-                : "invalid"
+              Number.isFinite(parseFloat(inflation())) ? "valid" : "invalid"
             }
           >
-            <div class="border-1 border-green-9 w-5/10 flex flex-row overflow-hidden rounded-xl">
-              <TextField.Label class="bg-green-9 pl-2 pr-1 text-center text-xs">
+            <div class="border-1 border-green-9 flex w-1/2 flex-row overflow-hidden rounded-xl">
+              <TextField.Label class="bg-green-9 block w-1/2 pl-2 pr-1 text-center text-xs">
                 Inflación estimada:
               </TextField.Label>
-              <div class="bg-slate-8 w-9/10 flex items-center">
+              <div class="bg-slate-8 flex w-1/2 items-center">
                 <TextField.Input
-                  min="0"
                   class="bg-slate-8 ui-invalid:(outline outline-red) w-9/10 text-center transition duration-300 ease-in-out"
                   value={inflation()}
                 />
               </div>
             </div>
-            <TextField.ErrorMessage class="color-red absolute text-xs">
-              El monto debe ser superior a $0
-            </TextField.ErrorMessage>
           </TextField.Root>
           <For each={options()}>
             {(option, idx) => {
@@ -155,10 +151,15 @@ const App = () => {
           </Button.Root>
 
           <Show when={displayResults()}>
-            <Results compoundPrices={compoundPrices} close={hideResults} />
+            <Results
+              compoundPrices={compoundPrices}
+              close={hideResults}
+              inflation={inflation}
+            />
           </Show>
         </main>
       </div>
+      <Footer />
     </div>
   );
 };
