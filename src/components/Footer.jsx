@@ -25,7 +25,7 @@ export const Footer = (props) => {
       <a
         i="mdi-github"
         class="text-15 mt-5 text-gray-700 hover:text-gray-300"
-        href="https://github.com/frandmb/cuotas"
+        href="https://github.com/frandmb/Comparador-de-Cuotas"
         target="_blank"
       />
     </footer>
