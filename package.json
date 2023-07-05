@@ -1,7 +1,7 @@
 {
   "name": "Comparador de Cuotas",
   "version": "0.0.0",
-  "description": "",
+  "description": "Herramienta para comparar cuotas vs la inflación y pagos al contado",
   "scripts": {
     "start": "vite",
     "dev": "vite",
@@ -9,7 +9,7 @@
     "serve": "vite preview"
   },
   "type": "module",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "devDependencies": {
     "@iconify/json": "^2.2.82",
     "@unocss/transformer-attributify-jsx": "^0.53.3",
