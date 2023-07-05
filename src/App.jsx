@@ -132,7 +132,6 @@ const App = () => {
                     option["price"][0](),
                   ];
                   const decimalInflation = Number(inflation()) / 100;
-                  console.log(decimalInflation);
                   return {
                     installments: installments,
                     compoundPrice: Math.round(
