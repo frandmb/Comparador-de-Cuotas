@@ -145,7 +145,7 @@ const App = () => {
                   };
                 })
               );
-              prices.sort((a, b) => a["compoundPrice"] > b["compoundPrice"]);
+              prices.sort((a, b) => a["compoundPrice"] - b["compoundPrice"]);
               setCompoundPrices(prices);
               showResults();
             }}
