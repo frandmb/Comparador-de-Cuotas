@@ -5,7 +5,6 @@ import { defineConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
 
 export default defineConfig({
-  base: "/Comparador-de-Cuotas/",
   plugins: [solidPlugin(), UnoCSS()],
   server: {
     port: 3000,
