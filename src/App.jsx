@@ -5,7 +5,7 @@ import { Button, TextField } from "@kobalte/core";
 import { For, Show, createSignal } from "solid-js";
 
 const App = () => {
-  const [inflation, setInflation] = createSignal(6.0); // No encontré API pública para pullearlo actualizado, ref publicación: https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31
+  const [inflation, setInflation] = createSignal(6.3); // No encontré API pública para pullearlo actualizado, ref publicación: https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31
   const [options, setOptions] = createSignal([]);
   const [displayResults, setDisplayResults] = createSignal(false);
   const [compoundPrices, setCompoundPrices] = createSignal([]);
@@ -70,7 +70,7 @@ const App = () => {
               target="blank"
               class="underline"
             >
-              Junio INDEC
+              Julio INDEC
             </a>{" "}
             (Argentina)
           </h4>
