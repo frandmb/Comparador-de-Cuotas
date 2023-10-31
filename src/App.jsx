@@ -117,7 +117,7 @@ const App = () => {
               class="cursor-pointer bg-transparent text-5xl lg:(border-2 border-white border-dashed w-xs rounded-xl h-50)"
               onclick={addOption}
             >
-              <div i="system-uicons-plus-circle" class="m-auto" />
+              <div class="m-auto block i-system-uicons-plus-circle" />
             </Button.Root>
           </div>
 

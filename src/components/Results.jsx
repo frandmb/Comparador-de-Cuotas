@@ -56,11 +56,11 @@ export const Results = (props) => {
   return (
     <section class="fixed inset-0 bg-black p-6 z-50 lg:(relative)">
       <div class="container m-a">
-        <header class="text-right">
+        <div class="flex sm:justify-center justify-end">
           <Button.Root class="bg-transparent" onclick={props.close}>
-            <i i="gridicons-cross-circle" class="block text-xl lg:(text-4xl)" />
+            <div class="i-gridicons-cross-circle block text-xl lg:(text-4xl)" />
           </Button.Root>
-        </header>
+        </div>
 
         <div>
           Tu mejor opción contra una inflación de {inflation}% mensual es:

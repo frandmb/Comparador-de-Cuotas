@@ -23,8 +23,7 @@ export const Footer = (props) => {
         </a>
       </p>
       <a
-        i="mdi-github"
-        class="text-15 mt-5 text-gray-700 hover:text-gray-300"
+        class="text-15 mt-5 text-gray-700 hover:text-gray-300 block i-mdi-github"
         href="https://github.com/frandmb/Comparador-de-Cuotas"
         target="_blank"
       />

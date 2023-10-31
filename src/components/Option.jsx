@@ -14,7 +14,7 @@ export const Option = (props) => {
             class="opacity-85 text-6 bg-transparent"
             onclick={props.close}
           >
-            <div i="gridicons-cross-circle" />
+            <div i-gridicons-cross-circle block />
           </Button.Root>
         )}
       </div>
