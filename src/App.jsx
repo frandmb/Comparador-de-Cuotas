@@ -3,9 +3,10 @@ import { Option } from "@/components/Option";
 import { Results } from "@/components/Results";
 import { Button, TextField } from "@kobalte/core";
 import { For, Show, createSignal } from "solid-js";
+import * as constants from "./constants";
 
 const App = () => {
-  const [inflation, setInflation] = createSignal(12.4); // No encontré API pública para pullearlo actualizado, ref publicación: https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31
+  const [inflation, setInflation] = createSignal(constants.inflation); // ref: https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31
   const [options, setOptions] = createSignal([]);
   const [displayResults, setDisplayResults] = createSignal(false);
   const [compoundPrices, setCompoundPrices] = createSignal([]);
@@ -70,7 +71,7 @@ const App = () => {
               target="blank"
               class="underline"
             >
-              Agosto INDEC
+              {constants.inflationSource}
             </a>{" "}
             (Argentina)
           </h4>
