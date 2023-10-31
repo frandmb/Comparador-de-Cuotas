@@ -11,7 +11,7 @@
   "type": "module",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@iconify/json": "^2.2.86",
+    "@iconify/json": "^2.2.135",
     "@unocss/transformer-attributify-jsx": "^0.53.4",
     "@unocss/transformer-variant-group": "^0.53.4",
     "prettier": "^2.8.8",
