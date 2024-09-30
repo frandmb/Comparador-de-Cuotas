@@ -1,2 +1,2 @@
-export const inflation = 12.7;
-export const inflationSource = "Septiembre INDEC";
+export const inflation = 4.2;
+export const inflationSource = "INDEC 09/2024";
